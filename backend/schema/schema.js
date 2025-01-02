@@ -4,11 +4,11 @@ import {
   GraphQLString,
   GraphQLList,
   GraphQLID,
-} from "graphql";
-import { books } from "../data/booksData.js";
+} from 'graphql';
+import { books } from '../data/booksData.js';
 
 const BookType = new GraphQLObjectType({
-  name: "Book",
+  name: 'Book',
   fields: () => ({
     id: { type: GraphQLID },
     author: { type: GraphQLString },
@@ -18,7 +18,7 @@ const BookType = new GraphQLObjectType({
 });
 
 const AuthorType = new GraphQLObjectType({
-  name: "Author",
+  name: 'Author',
   fields: () => ({
     id: { type: GraphQLID },
     authorName: { type: GraphQLString },
@@ -27,7 +27,7 @@ const AuthorType = new GraphQLObjectType({
 });
 
 const RootQuery = new GraphQLObjectType({
-  name: "RootQueryType",
+  name: 'RootQueryType',
   fields: {
     book: {
       type: BookType,
@@ -42,16 +42,16 @@ const RootQuery = new GraphQLObjectType({
 
           return bookData;
         } catch (error) {
-          console.error("Error in resolving 'book':", error.message);
+          console.error('Error in resolving \'book\':', error.message);
 
-          throw new Error(error.message || "An unexpected error occurred.");
+          throw new Error(error.message || 'An unexpected error occurred.');
         }
       },
     },
     author: {
       type: AuthorType,
       args: { id: { type: GraphQLID } },
-      resolve(_, { id, address = `Banglore` }) {
+      resolve(_, { id, address = 'Banglore' }) {
         try {
           const authorDetails = books.find(
             (book) => book.id === id && book.authorAdress === address
@@ -63,8 +63,8 @@ const RootQuery = new GraphQLObjectType({
           }
           return authorDetails;
         } catch (error) {
-          console.error("Error in resolving 'book':", error.message);
-          throw new Error(error.message || `An unexpected error occurred`);
+          console.error('Error in resolving \'book\':', error.message);
+          throw new Error(error.message || 'An unexpected error occurred');
         }
       },
     },
