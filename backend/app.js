@@ -11,7 +11,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/api", graphqlHTTP({ schema: BookSchema, graphiql : true }));
+app.use("/api", graphqlHTTP({ schema: BookSchema }));
 
 const server = createServer(app);
 server.listen(port);
